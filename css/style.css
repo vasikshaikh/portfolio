@@ -2816,45 +2816,90 @@ button,
   tap-highlight-color: transparent !important; /* For Android/Chrome */
 }
 
-/* Enhanced Hero Section for Mobile - Proper Name Display */
+/* Enhanced Hero Section for Mobile - Proper Name and Button Adjustments */
 @media (max-width: 576px) {
+  .hero {
+    padding: 80px 0 60px; /* Adjust overall padding for better fit */
+    min-height: 100vh; /* Full screen height */
+  }
+  
+  .hero-content {
+    padding: 0 15px; /* Side padding to center content without touching edges */
+    text-align: center; /* Ensure all text is centered */
+  }
+  
   .name-container {
-    min-height: auto; /* Allow natural height */
-    padding: 10px 0; /* Add some vertical spacing */
+    min-height: auto; /* Natural height */
+    padding: 20px 0; /* More vertical spacing for centering */
+    display: flex;
+    justify-content: center; /* Horizontal center */
+    align-items: center; /* Vertical center */
   }
   
   .name-wrapper {
-    flex-direction: row; /* Keep horizontal, but allow wrap */
-    flex-wrap: wrap; /* Allow wrapping if needed */
-    justify-content: center; /* Center the name */
-    gap: 0; /* Remove extra gaps between words */
+    flex-direction: row; /* Horizontal layout */
+    flex-wrap: wrap; /* Wrap if screen is too small */
+    justify-content: center; /* Center the entire name */
+    align-items: center; /* Align vertically */
+    gap: 8px; /* Small gap between wrapped parts */
+    max-width: 90%; /* Prevent overflow */
+    margin: 0 auto; /* Auto margins for additional centering */
   }
   
   .name-line {
-    display: flex; /* Keep letters in line */
-    white-space: nowrap; /* Prevent breaking within words */
-    margin: 0 5px; /* Space between words */
+    display: flex; /* Inline letters */
+    white-space: nowrap; /* No break within words */
+    margin: 0 4px; /* Space between words */
   }
   
   .name-letter {
-    font-size: 2.2rem; /* Adjusted size for visibility */
-    margin: 0 1px; /* Tight spacing between letters */
+    font-size: 2.2rem; /* Visible size */
+    margin: 0 1px; /* Letter spacing */
   }
   
   .hero p {
     font-size: 1rem;
-    line-height: 1.6; /* Better readability */
+    line-height: 1.6;
     text-align: center;
-    padding: 0 15px; /* Side padding to prevent edge touch */
-  }
-  
-  .hero-content {
-    padding: 0 10px; /* Ensure content doesn't touch edges */
+    padding: 0 15px;
+    margin: 20px auto; /* Center and space */
+    max-width: 100%; /* Full width text */
   }
   
   .hero-btns {
-    flex-direction: column;
+    flex-direction: column; /* Stack vertically */
     gap: 15px;
+    justify-content: center; /* Center buttons */
+    align-items: center; /* Align to center */
+    width: 100%; /* Full width container */
+    max-width: 300px; /* Optional: Limit max width for aesthetics */
+    margin: 0 auto; /* Center the button group */
+  }
+  
+  .btn {
+    width: 100%; /* Full width for same size */
+    max-width: 250px; /* Fixed max to make them equal */
+    padding: 12px 0; /* Equal padding */
+    font-size: 1rem; /* Consistent font */
+    text-align: center; /* Center text inside */
+    box-sizing: border-box; /* Include padding in width */
+  }
+  
+  .btn-primary,
+  .btn-outline {
+    display: flex; /* Flex for icon + text centering */
+    justify-content: center;
+    align-items: center;
+    gap: 8px; /* Space between icon and text */
+  }
+  
+  /* Ensure no overflow */
+  .hero-bg,
+  .floating-particles,
+  .laravel-bubbles {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
   }
 }
 
