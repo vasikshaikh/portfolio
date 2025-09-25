@@ -2806,22 +2806,95 @@
             font-size: 1.2rem;
         }
 
-       /* Hero Section - Better name wrapping and centering on small screens */
+     /* Remove blue tap highlight on mobile */
+*,
+a,
+button,
+.nav-links a,
+.hamburger {
+  -webkit-tap-highlight-color: transparent !important; /* For iOS/Safari */
+  tap-highlight-color: transparent !important; /* For Android/Chrome */
+}
+
+/* Enhanced Hero Section for Mobile - Proper Name Display */
 @media (max-width: 576px) {
+  .name-container {
+    min-height: auto; /* Allow natural height */
+    padding: 10px 0; /* Add some vertical spacing */
+  }
+  
   .name-wrapper {
-    flex-direction: column; /* Stack name parts vertically if too long */
-    gap: 5px;
+    flex-direction: row; /* Keep horizontal, but allow wrap */
+    flex-wrap: wrap; /* Allow wrapping if needed */
+    justify-content: center; /* Center the name */
+    gap: 0; /* Remove extra gaps between words */
   }
+  
+  .name-line {
+    display: flex; /* Keep letters in line */
+    white-space: nowrap; /* Prevent breaking within words */
+    margin: 0 5px; /* Space between words */
+  }
+  
   .name-letter {
-    font-size: 2rem; /* Smaller letters for better fit */
+    font-size: 2.2rem; /* Adjusted size for visibility */
+    margin: 0 1px; /* Tight spacing between letters */
   }
+  
   .hero p {
     font-size: 1rem;
-    padding: 0 10px;
+    line-height: 1.6; /* Better readability */
+    text-align: center;
+    padding: 0 15px; /* Side padding to prevent edge touch */
   }
+  
+  .hero-content {
+    padding: 0 10px; /* Ensure content doesn't touch edges */
+  }
+  
   .hero-btns {
     flex-direction: column;
     gap: 15px;
+  }
+}
+
+/* About Section - Proper Text Display in Mobile */
+@media (max-width: 768px) {
+  .about-content {
+    grid-template-columns: 1fr; /* Stack image and text */
+    gap: 30px;
+    text-align: center; /* Center text for better mobile view */
+  }
+  
+  .about-text {
+    padding: 0 15px; /* Side padding */
+  }
+  
+  .about-text h3 {
+    font-size: 1.8rem; /* Readable size */
+    margin-bottom: 15px;
+  }
+  
+  .about-text p {
+    font-size: 1rem; /* Standard mobile font */
+    line-height: 1.7; /* Improved spacing */
+    text-align: justify; /* Or center if preferred */
+    margin-bottom: 20px;
+  }
+  
+  .stats {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Responsive stats */
+    gap: 15px;
+    padding: 0 15px;
+  }
+  
+  .stat-item {
+    padding: 20px 10px; /* Compact for mobile */
+    font-size: 0.9rem;
+  }
+  
+  .stat-number {
+    font-size: 2rem;
   }
 }
 
@@ -2834,47 +2907,124 @@
     padding: 30px 20px;
   }
 }
-
-/* Projects Grid - Single column on small mobile */
+/* Mobile Responsive Adjustments for Project Modal Buttons */
 @media (max-width: 576px) {
-  .projects-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 0 15px;
+  .modal-links {
+    display: flex;
+    justify-content: center; /* Center for 1 button, space for multiple */
+    align-items: center;
+    gap: 15px; /* Existing gap */
+    flex-wrap: nowrap; /* Prevent wrapping to force one row for 2 buttons */
+    overflow-x: auto; /* Scroll if more than screen width (though max 2) */
+    padding: 10px 0; /* Vertical padding */
+    margin-top: 20px;
   }
-  .project-img {
-    height: 150px; /* Smaller images */
+  
+  .modal-link {
+    flex: 1 0 auto; /* Allow grow, but no shrink below content */
+    min-width: 140px; /* Minimum width to prevent squishing on small screens */
+    max-width: 45%; /* For 2 buttons, roughly half width each */
+    text-align: center; /* Center text inside buttons */
+    padding: 8px 15px; /* Slightly smaller padding for mobile */
+    font-size: 0.95rem; /* Slightly smaller font */
+  }
+  
+  /* Specific for single button - auto centers due to justify-content: center */
+  .modal-links:has(> .modal-link:nth-child(1):last-child) {
+    justify-content: center; /* Explicit center for 1 button */
+  }
+  
+  /* Specific for two buttons - space evenly in one row */
+  .modal-links:has(> .modal-link:nth-child(2)) {
+    justify-content: space-around; /* Even spacing between 2 buttons */
+  }
+  
+  /* Ensure modal body doesn't overflow */
+  .modal-body {
+    padding: 15px 10px; /* Adjust padding for mobile */
+  }
+  
+  .modal-content {
+    max-width: 95vw; /* Almost full width on mobile */
+    margin: 0 auto;
   }
 }
 
-/* Experience Timeline - Full width on mobile */
+/* Experience Section - Full Screen and Proper Display in Mobile */
 @media (max-width: 768px) {
+  .experience {
+    padding: 50px 0; /* Vertical padding only */
+    border-radius: 0; /* Full width, no rounded corners */
+  }
+  
+  .experience .container {
+    width: 100%; /* Full width */
+    max-width: 100%;
+    padding: 0 15px; /* Minimal side padding */
+  }
+  
+  .timeline {
+    padding: 0; /* No extra padding */
+    margin: 0 auto;
+    max-width: 100%; /* Full screen width */
+  }
+  
   .timeline-item {
-    width: 100%;
-    padding-left: 40px !important; /* Adjust for circle */
+    width: 100% !important; /* Force full width */
+    margin: 40px 0; /* Vertical spacing */
+    padding-left: 50px !important; /* Space for circle */
     text-align: left !important;
   }
+  
   .timeline-circle {
-    left: 0 !important;
+    left: 10px !important; /* Position circle near left edge */
+    top: 20px;
   }
+  
+  .timeline-content {
+    width: 100%; /* Full width content */
+    padding: 20px;
+    border-radius: 15px;
+    border-left: 4px solid var(--primary-color) !important; /* Consistent border */
+  }
+  
   .timeline-content::before {
     left: -15px !important;
     border-width: 15px 15px 15px 0 !important;
     border-color: transparent white transparent transparent !important;
   }
+  
+  .timeline-content h3 {
+    font-size: 1.4rem;
+  }
+  
+  .timeline-content .description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  .timeline-skills {
+    justify-content: center; /* Center skills if needed */
+  }
 }
 
-/* Contact Section - Stack info and form */
+/* Contact Section - Full Screen in Mobile View */
 @media (max-width: 768px) {
   .contact {
-    padding: 50px 0; /* Remove side padding for full width */
-    border-radius: 0; /* Optional: Remove rounded corners for edge-to-edge */
+    width: 100vw; /* Full viewport width */
+    min-height: 100vh; /* Full screen height if needed, adjust as per content */
+    padding: 60px 0; /* Vertical padding only, no side padding */
+    margin: 0; /* No margins */
+    border-radius: 0; /* Remove rounded corners for edge-to-edge */
+    box-sizing: border-box; /* Include padding in width/height */
+    overflow-x: hidden; /* Prevent horizontal scroll */
   }
   
   .contact .container {
-    width: 100%; /* Full width container */
+    width: 100%; /* Full width */
     max-width: 100%;
-    padding: 0 15px; /* Minimal side padding for content */
+    padding: 0 15px; /* Minimal side padding for content readability */
+    box-sizing: border-box;
   }
   
   .section-title {
@@ -2890,24 +3040,43 @@
   }
   
   .contact-container {
-    grid-template-columns: 1fr; /* Already stacked, ensure full width */
+    grid-template-columns: 1fr; /* Stacked full width */
     gap: 30px;
     width: 100%;
     padding: 0;
+    margin: 0;
   }
   
   .contact-info,
   .contact-form {
-    width: 100%; /* Full width for both sides */
-    padding: 20px; /* Internal padding */
+    width: 100%; /* Full width for both */
+    padding: 20px 15px; /* Internal padding */
     box-sizing: border-box;
+    margin: 0;
   }
   
   .contact-item,
   .contact-form {
-    margin: 0; /* Remove any margins */
+    margin: 0; /* No margins */
+    border-radius: 0; /* Flat for full screen */
+  }
+  
+  .form-group,
+  .submit-btn {
+    width: 100%; /* Full width inputs and button */
+    margin: 0 auto 20px;
+  }
+  
+  .social-links {
+    justify-content: center; /* Center social icons */
+  }
+  
+  /* Optional: Hide floating elements if they cause issues */
+  .floating-contact {
+    display: none; /* Or adjust opacity/position if needed */
   }
 }
+
 /* Center Back-to-Top Button in Mobile View */
 @media (max-width: 768px) {
   .footer-content {
@@ -2922,5 +3091,18 @@
   
   .copyright {
     width: 100%; /* Full width for centering */
+  }
+}
+
+/* General Full Screen Mobile Adjustments */
+@media (max-width: 768px) {
+  body {
+    padding: 0; /* No body padding for full screen */
+    margin: 0;
+  }
+  
+  section {
+    width: 100vw; /* Full viewport width */
+    overflow-x: hidden; /* Prevent horizontal scroll */
   }
 }
