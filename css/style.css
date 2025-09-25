@@ -2813,7 +2813,6 @@ button,
 .nav-links a,
 .hamburger {
   -webkit-tap-highlight-color: transparent !important; /* For iOS/Safari */
-  tap-highlight-color: transparent !important; /* For Android/Chrome */
 }
 
 
@@ -3010,44 +3009,30 @@ button,
 @media (max-width: 576px) {
   .modal-links {
     display: flex;
-    justify-content: center; /* Center for 1 button, space for multiple */
+    flex-direction: column; 
+    gap: 12px;
     align-items: center;
-    gap: 15px; /* Existing gap */
-    flex-wrap: nowrap; /* Prevent wrapping to force one row for 2 buttons */
-    overflow-x: auto; /* Scroll if more than screen width (though max 2) */
-    padding: 10px 0; /* Vertical padding */
     margin-top: 20px;
   }
-  
+
   .modal-link {
-    flex: 1 0 auto; /* Allow grow, but no shrink below content */
-    min-width: 140px; /* Minimum width to prevent squishing on small screens */
-    max-width: 45%; /* For 2 buttons, roughly half width each */
-    text-align: center; /* Center text inside buttons */
-    padding: 8px 15px; /* Slightly smaller padding for mobile */
-    font-size: 0.95rem; /* Slightly smaller font */
+    width: 50%; 
+    text-align: center; 
+    padding: 12px 15px;
+    font-size: 1rem;
+    box-sizing: border-box;
   }
-  
-  /* Specific for single button - auto centers due to justify-content: center */
-  .modal-links:has(> .modal-link:nth-child(1):last-child) {
-    justify-content: center; /* Explicit center for 1 button */
-  }
-  
-  /* Specific for two buttons - space evenly in one row */
-  .modal-links:has(> .modal-link:nth-child(2)) {
-    justify-content: space-around; /* Even spacing between 2 buttons */
-  }
-  
-  /* Ensure modal body doesn't overflow */
-  .modal-body {
-    padding: 15px 10px; /* Adjust padding for mobile */
-  }
-  
+
   .modal-content {
-    max-width: 95vw; /* Almost full width on mobile */
+    max-width: 95vw; 
     margin: 0 auto;
   }
+
+  .modal-body {
+    padding: 15px 10px;
+  }
 }
+
 
 /* Experience Section - Full Screen and Proper Display in Mobile */
 @media (max-width: 768px) {
