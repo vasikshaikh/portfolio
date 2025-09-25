@@ -178,6 +178,14 @@
         color: var(--nav-text-color);
       }
 
+      a,
+      button,
+      .nav-links a,
+      .hamburger {
+        -webkit-tap-highlight-color: transparent !important; /* For WebKit-based browsers */
+        /* tap-highlight-color: transparent !important; */ /* This line is commented out as it's not supported in all browsers */
+      }
+
       /* Hero Section */
       .hero {
         height: 100vh;
@@ -2798,95 +2806,121 @@
             font-size: 1.2rem;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .footer-content {
-                flex-direction: column;
-                gap: 25px;
-            }
-            
-            .copyright p {
-                font-size: 1rem;
-            }
-            
-            .back-to-top {
-                width: 45px;
-                height: 45px;
-            }
-        }
+       /* Hero Section - Better name wrapping and centering on small screens */
+@media (max-width: 576px) {
+  .name-wrapper {
+    flex-direction: column; /* Stack name parts vertically if too long */
+    gap: 5px;
+  }
+  .name-letter {
+    font-size: 2rem; /* Smaller letters for better fit */
+  }
+  .hero p {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+  .hero-btns {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
 
-        @media (max-width: 480px) {
-            footer {
-                padding: 25px 0;
-            }
-            
-            .copyright p {
-                font-size: 0.9rem;
-            }
-        }
+/* Skills Section - Stack categories vertically on mobile */
+@media (max-width: 768px) {
+  .skills-container {
+    grid-template-columns: 1fr; /* Single column for mobile */
+  }
+  .skill-category {
+    padding: 30px 20px;
+  }
+}
 
-      @media (max-width: 768px) {
-        .nav-links {
-          position: fixed;
-          top: 80px;
-          left: -100%;
-          width: 100%;
-          height: calc(100vh - 80px);
-          background: white;
-          flex-direction: column;
-          align-items: center;
-          justify-content: flex-start;
-          padding-top: 50px;
-          transition: var(--transition);
-          box-shadow: var(--shadow);
-        }
+/* Projects Grid - Single column on small mobile */
+@media (max-width: 576px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 15px;
+  }
+  .project-img {
+    height: 150px; /* Smaller images */
+  }
+}
 
-        .nav-links.active {
-          left: 0;
-        }
+/* Experience Timeline - Full width on mobile */
+@media (max-width: 768px) {
+  .timeline-item {
+    width: 100%;
+    padding-left: 40px !important; /* Adjust for circle */
+    text-align: left !important;
+  }
+  .timeline-circle {
+    left: 0 !important;
+  }
+  .timeline-content::before {
+    left: -15px !important;
+    border-width: 15px 15px 15px 0 !important;
+    border-color: transparent white transparent transparent !important;
+  }
+}
 
-        .nav-links li {
-          margin: 15px 0;
-        }
-
-        .hamburger {
-          display: block;
-        }
-
-        .hero h1 {
-          font-size: 2.3rem;
-        }
-
-        .hero-btns {
-          flex-direction: column;
-          gap: 15px;
-        }
-
-        .stats {
-          grid-template-columns: 1fr;
-          gap: 15px;
-        }
-
-        .footer-content {
-          flex-direction: column;
-          gap: 20px;
-        }
-      }
-
-      @media (max-width: 576px) {
-        section {
-          padding: 70px 0;
-        }
-
-        .section-title h2 {
-          font-size: 2rem;
-        }
-
-        .hero h1 {
-          font-size: 2rem;
-        }
-
-        .about-text h3 {
-          font-size: 1.7rem;
-        }
-      }
+/* Contact Section - Stack info and form */
+@media (max-width: 768px) {
+  .contact {
+    padding: 50px 0; /* Remove side padding for full width */
+    border-radius: 0; /* Optional: Remove rounded corners for edge-to-edge */
+  }
+  
+  .contact .container {
+    width: 100%; /* Full width container */
+    max-width: 100%;
+    padding: 0 15px; /* Minimal side padding for content */
+  }
+  
+  .section-title {
+    width: 100%; /* Full width title */
+    padding: 0;
+    margin-bottom: 40px;
+  }
+  
+  .section-title h2 {
+    font-size: 2.5rem; /* Adjust size if needed */
+    width: 100%;
+    text-align: center;
+  }
+  
+  .contact-container {
+    grid-template-columns: 1fr; /* Already stacked, ensure full width */
+    gap: 30px;
+    width: 100%;
+    padding: 0;
+  }
+  
+  .contact-info,
+  .contact-form {
+    width: 100%; /* Full width for both sides */
+    padding: 20px; /* Internal padding */
+    box-sizing: border-box;
+  }
+  
+  .contact-item,
+  .contact-form {
+    margin: 0; /* Remove any margins */
+  }
+}
+/* Center Back-to-Top Button in Mobile View */
+@media (max-width: 768px) {
+  .footer-content {
+    align-items: center; /* Center items horizontally in column layout */
+    text-align: center; /* Center text and inline elements */
+  }
+  
+  .back-to-top {
+    margin: 0 auto; /* Auto margins for horizontal centering */
+    display: block; /* Ensure it's block for margin auto to work */
+  }
+  
+  .copyright {
+    width: 100%; /* Full width for centering */
+  }
+}

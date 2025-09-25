@@ -518,32 +518,71 @@
           }
         });
 
+// Hamburger Menu and Navigation
+document.addEventListener("DOMContentLoaded", function () {
+  const hamburger = document.getElementById("hamburger");
+  const navLinks = document.getElementById("nav-links");
+  const navItems = navLinks.querySelectorAll("a"); // All anchor tags
+  const sections = document.querySelectorAll('section[id]');
 
-
-
-
-
-        // =============== nev
-const hamburger = document.getElementById("hamburger");
-const navLinks = document.getElementById("nav-links");
-const navItems = navLinks.querySelectorAll("a"); // सभी anchor tags
-
-// Hamburger click -> menu open/close
-hamburger.addEventListener("click", (e) => {
-  e.stopPropagation(); // click bubble na ho
-  navLinks.classList.toggle("active");
-});
-
-// Page click outside -> menu close
-document.addEventListener("click", (e) => {
-  if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
-    navLinks.classList.remove("active");
-  }
-});
-
-// Anchor click -> menu close
-navItems.forEach((link) => {
-  link.addEventListener("click", () => {
-    navLinks.classList.remove("active");
+  // Hamburger click -> menu open/close
+  hamburger.addEventListener("click", (e) => {
+    e.stopPropagation(); // Prevent bubble
+    navLinks.classList.toggle("active");
   });
+
+  // Click outside menu -> close
+  document.addEventListener("click", (e) => {
+    if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+      navLinks.classList.remove("active");
+    }
+  });
+
+  // Function to remove active from all links
+  function removeActive() {
+    navItems.forEach(link => link.classList.remove('active'));
+  }
+
+  // On link click: Set active, scroll smoothly, close menu
+  navItems.forEach(link => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault(); // Prevent default jump for smooth scroll
+      removeActive();
+      link.classList.add('active');
+      
+      // Smooth scroll to section
+      const targetId = link.getAttribute('href').substring(1);
+      const targetSection = document.getElementById(targetId);
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+      }
+      
+      // Close mobile menu
+      navLinks.classList.remove('active');
+    });
+  });
+
+  // Scroll Spy: Activate link based on scroll position
+  window.addEventListener('scroll', () => {
+    let current = '';
+    
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 100; // Offset for header
+      const sectionHeight = section.clientHeight;
+      if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+        current = section.getAttribute('id');
+      }
+    });
+    
+    if (current) {
+      removeActive();
+      const activeLink = document.querySelector(`.nav-links a[href="#${current}"]`);
+      if (activeLink) {
+        activeLink.classList.add('active');
+      }
+    }
+  });
+
+  // Initial active (Home on load)
+  document.querySelector('.nav-links a[href="#home"]').classList.add('active');
 });
